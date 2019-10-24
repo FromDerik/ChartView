@@ -23,10 +23,10 @@ struct Line: View {
         return frame.size.height / CGFloat(data.points.max()! + data.points.min()!)
     }
     var path: Path {
-        return Path.quadCurvedPathWithPoints(points: data.points, step: CGPoint(x: stepWidth, y: stepHeight))
+        return Path.quadCurvedPathWithPoints(points: data.points.roundedToNearest(), step: CGPoint(x: stepWidth, y: stepHeight))
     }
     var closedPath: Path {
-        return Path.quadClosedCurvedPathWithPoints(points: data.points, step: CGPoint(x: stepWidth, y: stepHeight))
+        return Path.quadClosedCurvedPathWithPoints(points: data.points.roundedToNearest(), step: CGPoint(x: stepWidth, y: stepHeight))
     }
     
     var body: some View {

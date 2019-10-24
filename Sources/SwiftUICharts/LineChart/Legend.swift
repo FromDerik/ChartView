@@ -49,8 +49,8 @@ struct Legend: View {
     }
     
     func getYLegend() -> [Int]? {
-        guard let max = data.points.max() else { return nil }
-        guard let min = data.points.min() else { return nil }
+        guard let max = data.points.roundedToNearest().max() else { return nil }
+        guard let min = data.points.roundedToNearest().min() else { return nil }
         if(min > 0){
             let upperBound = ((max/10)+1) * 10
             let step = upperBound/4

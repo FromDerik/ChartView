@@ -128,10 +128,10 @@ public struct ChartStyle {
 }
 
 class ChartData: ObservableObject {
-    @Published var points: [Int] = [Int]()
-    @Published var currentPoint: Int? = nil
+    @Published var points: [Double] = [Double]()
+    @Published var currentPoint: Double? = nil
     
-    init(points:[Int]) {
+    init(points:[Double]) {
         self.points = points
     }
 }
@@ -157,6 +157,16 @@ extension Color {
             (r, g, b) = (0, 0, 0)
         }
         self.init(red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255)
+    }
+}
+
+extension Array where Element == Double {
+    func roundedToNearest() -> [Int] {
+        return self.compactMap {
+            var point = $0
+            point.round(.toNearestOrAwayFromZero)
+            return Int(point)
+        }
     }
 }
 
